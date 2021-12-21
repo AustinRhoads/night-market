@@ -1,17 +1,22 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Viewport from './components/Viewport';
 import "./App.css"
 import Controller from './console/Controller';
+import Game from './game/Game';
 
 function App() {
 
+  const [game, setGame] = useState({})
+
+useEffect(() => {
+Controller.connect()
+Game.start()
+})
 
   return (
     <div className="App">
 
-      componentDidMount() {
-        Controller.connect()
-      }
+ 
       
 
       <div>
