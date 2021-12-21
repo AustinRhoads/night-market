@@ -1,13 +1,12 @@
-import Player from "./Player";
+//import Player from "./Player";
 
 const Game = {
 
     start: () => {
         console.log("starting")
-        this.player = Player()
     },
 
-    player: this.player
+   // player: this.player
 
 };
 

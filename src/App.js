@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import Viewport from './components/Viewport';
 import "./App.css"
 import Controller from './console/Controller';
@@ -6,7 +7,8 @@ import Game from './game/Game';
 
 function App() {
 
-  const [game, setGame] = useState({})
+  const game = useSelector(state => state.game_state.game)
+  const state = useSelector(state => state)
 
 useEffect(() => {
 Controller.connect()
@@ -21,7 +23,7 @@ Game.start()
 
       <div>
         
-        <h1>Night Cycle</h1>
+        <h1>{game.name}</h1>
         
         <Viewport />
 
