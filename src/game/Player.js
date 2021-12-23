@@ -1,4 +1,9 @@
 class Player {
+
+    //TODO: 
+    //
+    //1. create player square.
+
     constructor(name){
         this.name = name;
         this.speed= 10;

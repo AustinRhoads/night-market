@@ -6,11 +6,18 @@ import Player from "./Player";
 
 class Game {
 
+    //TODO:
+    //
+    //1. create basic assests.
+    //
+    //2. have assests load first before engine runs
+
     constructor(){
         this.player = new Player("Auzzy");
         this.controller = new Controller();
         this.controller.connect();
-        this.engine = Engine(this);
+        this.engine = new Engine(this);
+        this.engine.run()
     }
 
     start(){ 
