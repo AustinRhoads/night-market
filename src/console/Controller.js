@@ -5,12 +5,12 @@
    }
  
  
- const Controller = {
+ class Controller{
 
-     connect: () => {
+     connect = () => {
         document.addEventListener('keydown', logKey);
 
-    },
+    }
 
 
 

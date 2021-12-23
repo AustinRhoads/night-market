@@ -1,4 +1,5 @@
-const Engine = {
+const Engine = (game) => {
+    
 
 };
 

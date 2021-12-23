@@ -8,11 +8,13 @@ import Game from './game/Game';
 function App() {
 
   const game = useSelector(state => state.game_state.game)
-  const state = useSelector(state => state)
+ // const state = useSelector(state => state)
 
 useEffect(() => {
-Controller.connect()
-Game.start()
+//Controller.connect()
+//Game.start()
+let game = new Game();
+game.start()
 })
 
   return (

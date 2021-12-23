@@ -1,8 +1,12 @@
-const Player = {
-    speed: 10,
-    jumoing_height: 10,
-    x: 100,
-    y:100,
+class Player {
+    constructor(name){
+        this.name = name;
+        this.speed= 10;
+        this.jumoing_height= 10;
+        this.x= 100;
+        this.y=100;
+    }
+    
 
 };
 
