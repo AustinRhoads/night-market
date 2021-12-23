@@ -1,8 +1,7 @@
+import Game from "../game/Game";
 
 const default_game_state = {
-    game: {
-        name: "Night Market"
-    }
+    game: new Game()
     
 
 }

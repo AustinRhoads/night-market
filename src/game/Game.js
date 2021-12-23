@@ -13,6 +13,7 @@ class Game {
     //2. have assests load first before engine runs
 
     constructor(){
+        this.name = "Night Market"
         this.player = new Player("Auzzy");
         this.controller = new Controller();
         this.controller.connect();

@@ -8,7 +8,7 @@ function App() {
 
   //TODO:
   //
-  //1. move veiwport into conole component
+  //1. move veiwport into console component
   //
   //2. create menu screens, pause screens, settings screen
   //move them to the console component
@@ -19,7 +19,7 @@ function App() {
  // const state = useSelector(state => state)
 
 useEffect(() => {
-let game = new Game();
+//let game = new Game();
 game.start()
 })
 
@@ -31,8 +31,7 @@ game.start()
 
       <div>
         
-        <h1>{game.name}</h1>
-        
+        <h1>{game.name}</h1>       
         <Viewport />
 
       </div>
