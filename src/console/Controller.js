@@ -1,10 +1,17 @@
- const logKey = (e) => {
-    e.preventDefault()
-    console.log(e.code)
-   }
+ 
  
  
  class Controller{
+
+    constructor(){
+
+        this.gamepad_is_connected = false;
+        this.gamepad_is_controller = false;
+        this.gamepad = {};
+
+        this.keyboard_is_controller = true;
+      //  this.connect()
+    }
 
      connect = () => {
 
@@ -16,8 +23,30 @@
         //
         //3.
 
-        document.addEventListener('keydown', logKey);
+       
 
+        window.addEventListener("gamepadconnected", this.set_gamepad)
+
+
+
+
+
+        document.addEventListener('keydown', this.logKey);
+
+
+
+    }
+
+    logKey = (e) => {
+        e.preventDefault()
+        console.log(e.code)
+    }
+
+    set_gamepad = (e) => {
+        this.gamepad_is_connected = e.gamepad.connected;
+        this.gamepad_is_controller = true;
+        this.gamepad = e.gamepad
+        console.log(e.gamepad)
     }
 
 

@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import Viewport from './components/Viewport';
-import "./App.css"
-import Game from './game/Game';
+import "./App.css";
+
+import Console from './console/Console';
+
 
 function App() {
 
@@ -16,23 +17,18 @@ function App() {
   //3.FEEL GOOD
 
   const game = useSelector(state => state.game_state.game)
- // const state = useSelector(state => state)
 
 useEffect(() => {
-//let game = new Game();
 game.start()
 })
 
   return (
-    <div className="App">
-
- 
-      
+    <div className="App">   
 
       <div>
         
         <h1>{game.name}</h1>       
-        <Viewport />
+        <Console game={game} />
 
       </div>
 

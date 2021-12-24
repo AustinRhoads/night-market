@@ -3,6 +3,7 @@
 import Controller from "../console/Controller";
 import Engine from "./Engine";
 import Player from "./Player";
+import Map from "./Map";
 
 class Game {
 
@@ -17,14 +18,17 @@ class Game {
         this.player = new Player("Auzzy");
         this.controller = new Controller();
         this.controller.connect();
+        //this.gamepad = () => {return this.controller.gamepad};
         this.engine = new Engine(this);
         this.engine.run()
     }
 
     start(){ 
         console.log("starting")
-        console.log(this.player)        
+        console.log(this.player)   
+        console.log(this.controller)     
     }
+
 
    
 

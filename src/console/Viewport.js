@@ -1,5 +1,6 @@
 import React from 'react'
-import Map from './Map'
+import Map from '../game/Map'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 export default function Viewport() {
     return (
