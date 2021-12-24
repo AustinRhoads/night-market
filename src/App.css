@@ -37,3 +37,29 @@ body{
   background-color: green;
   z-index: -1;
 }
+
+
+#axis-display{
+  display: flex;
+  flex-direction: row;
+}
+
+#left-axis{
+  font-size: 22pt;
+  border: solid 3px black;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  text-align: center;
+  
+}
+
+#right-axis{
+  font-size: 22pt;
+  border: solid 3px black;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  text-align: center;
+  
+}

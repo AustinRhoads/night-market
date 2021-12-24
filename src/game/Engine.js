@@ -21,14 +21,6 @@ class Engine {
     run = () => {
         this.game.controller.controller_listen()
 
-
-
-      //  if(this.game.controller.gamepad_is_connected){
-      //      console.log(this.game.controller.gamepad.buttons[0].value)
-      //  }
-
-       // console.log(this.game.gamepad)
-      //  console.log(this.game.controller.gamepad_is_connected)
         window.requestAnimationFrame(this.run)
     }
 
