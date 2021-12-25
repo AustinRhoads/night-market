@@ -1,6 +1,6 @@
 import testimg from '../assets/test_room.png'
 import XBOX_360_MAP from '../constants/xbox_map';
-//let ctx = document.querySelector("#game-canvas").getContext("2d") 
+
 
 class Engine {
 
@@ -10,14 +10,14 @@ class Engine {
 
     
     constructor(game){
-        this.game = game;
-        
-       // this.context = ctx
-       
 
-       this.set_context()
-       this.map_controller_events_to_actions();
+        this.game = game;
+        this.set_context()
+        this.run_controller_event_listeners();
+
     }
+
+
 
     set_context = () => {
 
@@ -32,35 +32,30 @@ class Engine {
         })
     }
 
-    map_controller_events_to_actions = () => {
+    run_controller_event_listeners = () => {
+
+
         document.addEventListener("buttonDown", (e) => {
             console.log(`You've pressed the ${XBOX_360_MAP[e.detail.button_index]} button at index `, e.detail.button_index, " with a value of: ", e.detail.value, ". ") 
-            switch(XBOX_360_MAP[e.detail.button_index]){
-                case "A":
-                    this.game.player_jump()
-                    break;
-                case "Start":
-                    window.location.reload(false)
-                    break;
-                default:
-                    return;
-            }   
+            this.game.map_controller_button_actions_to_player_actions(e.detail)
         })
+
+
+        document.addEventListener("buttonHolding", (e) => {
+            this.game.map_controller_button_actions_to_player_actions(e.detail)
+        })
+
 
         document.addEventListener("buttonUp", (e) => {      
             console.log(`You've released the ${XBOX_360_MAP[e.detail.button_index]} button at index `, e.detail.button_index, " with a value of: ", e.detail.value, ". ")
         })
 
+
         document.addEventListener("axesChangeValue", (e) => {
               let el = document.getElementById(`axes-${e.detail.axes_index + 1}`);
                 el.querySelector('p').innerHTML = parseFloat(e.detail.value.toFixed(2))
 
-                if(e.detail.axes_index === 0){
-                    this.game.player.x_velocity += this.game.player.speed * e.detail.value
-                }
-                if(e.detail.axes_index === 1){
-                    this.game.player.y += this.game.player.speed * e.detail.value
-                }
+                this.game.map_axes_actions_to_player_actions(e)
         })
 
         document.addEventListener("axesReleased", (e) => {
@@ -73,10 +68,9 @@ class Engine {
 
 
     gravity = () => {
-        if(this.game.player.jumping){
+       // if(this.game.player.jumping){
             this.game.player.y_velocity += this.game.gravity
-        }
-        
+        //}    
     }
 
     draw_background = () => {

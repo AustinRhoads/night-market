@@ -1,4 +1,4 @@
-//import XBOX_360_MAP from "../constants/xbox_map";
+import XBOX_360_MAP from "../constants/xbox_map";
  
  
  
@@ -39,6 +39,7 @@
 
     set_gamepad = (e) => {
         this.gamepad_is_connected = true;
+        this.gamepad_matrix = XBOX_360_MAP;
         console.log(e.gamepad.id, " is connected");
         console.log(e.gamepad)
     }
@@ -79,6 +80,17 @@
                         }
                     })
                 )                
+            }
+            
+            if(button.pressed && oldButtonPressed){
+                document.dispatchEvent(
+                    new CustomEvent("buttonHolding", {
+                        detail: {
+                            button_index: index,
+                            value: button?.value
+                        }
+                    })
+                )
             }
          
         })
