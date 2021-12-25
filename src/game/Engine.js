@@ -39,6 +39,9 @@ class Engine {
                 case "A":
                     this.game.player_jump()
                     break;
+                case "Start":
+                    window.location.reload(false)
+                    break;
                 default:
                     return;
             }   
@@ -53,7 +56,7 @@ class Engine {
                 el.querySelector('p').innerHTML = parseFloat(e.detail.value.toFixed(2))
 
                 if(e.detail.axes_index === 0){
-                    this.game.player.x += this.game.player.speed * e.detail.value
+                    this.game.player.x_velocity += this.game.player.speed * e.detail.value
                 }
                 if(e.detail.axes_index === 1){
                     this.game.player.y += this.game.player.speed * e.detail.value
@@ -67,13 +70,7 @@ class Engine {
 
     }
 
-    collide_with_floor = () => {
-        if(this.game.player.y >= 144 - this.game.player.height){
-            this.game.player.y = 144 - this.game.player.height
-            this.game.player.jumping = false;
-            this.game.player.y_velocity = 0;
-        }
-    }
+
 
     gravity = () => {
         if(this.game.player.jumping){
@@ -112,12 +109,17 @@ class Engine {
         this.game.controller.dispatch_controller_events()
 
 
-        this.game.player.y += this.game.player.y_velocity
+        
 
         //PLAYER REACTS TO ENVIRONMENT
         this.gravity()
-       
-        this.collide_with_floor()
+        this.game.player.x += this.game.player.x_velocity
+        this.game.player.y += this.game.player.y_velocity
+        this.game.player.x_velocity *= this.game.friction;
+        this.game.player.y_velocity *= this.game.friction;
+
+
+        this.game.collide_with_floor()
 
     
 

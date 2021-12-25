@@ -19,8 +19,8 @@ class Game {
         this.controller = new Controller(this);
         this.controller.connect();
         this.engine = new Engine(this);
-        this.gravity = 2;
-        this.friction = 2;
+        this.gravity = 1.5;
+        this.friction = 0.8;
        
     }
 
@@ -30,15 +30,16 @@ class Game {
         this.player.jumping = true;
     }
 
-    start(){ 
-        
-            
-            this.engine.run()
-        
+    collide_with_floor = () => {
+        if(this.player.y >= 144 - this.player.height){
+            this.player.y = 144 - this.player.height
+            this.player.jumping = false;
+            this.player.y_velocity = 0;
+        }
+    }
 
-      
-
-          
+    start(){         
+            this.engine.run()      
     }
 
 

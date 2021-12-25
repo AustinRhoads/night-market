@@ -5,7 +5,7 @@ class Player {
 
     constructor(name){
         this.name = name;
-        this.speed= 4;
+        this.speed= 6;
         this.jumping_height= 17;
         this.x= 100;
         this.y=100;
