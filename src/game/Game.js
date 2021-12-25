@@ -19,7 +19,15 @@ class Game {
         this.controller = new Controller(this);
         this.controller.connect();
         this.engine = new Engine(this);
+        this.gravity = 2;
+        this.friction = 2;
        
+    }
+
+    player_jump(){
+        if(this.player.jumping === false)
+        this.player.y_velocity -= this.player.jumping_height
+        this.player.jumping = true;
     }
 
     start(){ 

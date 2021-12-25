@@ -6,10 +6,10 @@ class Player {
     constructor(name){
         this.name = name;
         this.speed= 4;
-        this.jumping_height= 12;
+        this.jumping_height= 17;
         this.x= 100;
         this.y=100;
-        this.jumping = false;
+        this.jumping = true;
         this.width = 32;
         this.height = 32;
         this.x_velocity = 0;

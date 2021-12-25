@@ -1,17 +1,12 @@
 import testimg from '../assets/test_room.png'
+import XBOX_360_MAP from '../constants/xbox_map';
 //let ctx = document.querySelector("#game-canvas").getContext("2d") 
 
 class Engine {
 
     //TODO:
     //
-    //1. Have this update the players position from the games controller
-    //
-    //2.create Canvas and Context
-    //
-    //3. create floor
-    //
-    //4. utilize window.requestAnimationFrame with a time correction.
+
 
     
     constructor(game){
@@ -21,21 +16,70 @@ class Engine {
        
 
        this.set_context()
+       this.map_controller_events_to_actions();
     }
 
     set_context = () => {
+
         window.addEventListener("DOMContentLoaded", () => {
+
             this.img = document.createElement('img');
+
             this.img.src = testimg;
             
             this.context = document.querySelector("#game-canvas").getContext("2d") 
-      
-
-
-            
-
 
         })
+    }
+
+    map_controller_events_to_actions = () => {
+        document.addEventListener("buttonDown", (e) => {
+            console.log(`You've pressed the ${XBOX_360_MAP[e.detail.button_index]} button at index `, e.detail.button_index, " with a value of: ", e.detail.value, ". ") 
+            switch(XBOX_360_MAP[e.detail.button_index]){
+                case "A":
+                    this.game.player_jump()
+                    break;
+                default:
+                    return;
+            }   
+        })
+
+        document.addEventListener("buttonUp", (e) => {      
+            console.log(`You've released the ${XBOX_360_MAP[e.detail.button_index]} button at index `, e.detail.button_index, " with a value of: ", e.detail.value, ". ")
+        })
+
+        document.addEventListener("axesChangeValue", (e) => {
+              let el = document.getElementById(`axes-${e.detail.axes_index + 1}`);
+                el.querySelector('p').innerHTML = parseFloat(e.detail.value.toFixed(2))
+
+                if(e.detail.axes_index === 0){
+                    this.game.player.x += this.game.player.speed * e.detail.value
+                }
+                if(e.detail.axes_index === 1){
+                    this.game.player.y += this.game.player.speed * e.detail.value
+                }
+        })
+
+        document.addEventListener("axesReleased", (e) => {
+            let el = document.getElementById(`axes-${e.detail.axes_index + 1}`);
+            el.querySelector('p').innerHTML = 0;
+        })
+
+    }
+
+    collide_with_floor = () => {
+        if(this.game.player.y >= 144 - this.game.player.height){
+            this.game.player.y = 144 - this.game.player.height
+            this.game.player.jumping = false;
+            this.game.player.y_velocity = 0;
+        }
+    }
+
+    gravity = () => {
+        if(this.game.player.jumping){
+            this.game.player.y_velocity += this.game.gravity
+        }
+        
     }
 
     draw_background = () => {
@@ -43,11 +87,11 @@ class Engine {
     }
 
     draw_floor = () => {
-        this.context.strokeStyle = '#202830';
+        this.context.strokeStyle = '#202832';
         this.context.lineWidth = 4;
         this.context.beginPath();
-        this.context.moveTo(0, 164);
-        this.context.lineTo(320, 164);
+        this.context.moveTo(0, 144);
+        this.context.lineTo(320, 144);
         this.context.stroke();
     }
 
@@ -65,19 +109,26 @@ class Engine {
 
         //CORRECT CONTROLLER MODES
 
-        this.game.controller.controller_listen()
+        this.game.controller.dispatch_controller_events()
 
 
+        this.game.player.y += this.game.player.y_velocity
+
+        //PLAYER REACTS TO ENVIRONMENT
+        this.gravity()
+       
+        this.collide_with_floor()
 
     
 
         //DRAW BACKGROUND
         this.draw_background()
 
+        //DRAW FLOOR
+        this.draw_floor()
+
         //DRAW PLAYER
         this.draw_player()
-                //DRAW FLOOR
-                this.draw_floor()
 
 
         window.requestAnimationFrame(this.run)
