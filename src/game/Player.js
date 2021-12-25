@@ -10,8 +10,10 @@ class Player {
         this.x= 100;
         this.y=100;
         this.jumping = false;
-        this.width = 100;
-        this.height = 100;
+        this.width = 32;
+        this.height = 32;
+        this.x_velocity = 0;
+        this.y_velocity = 0;
     }
     
 
