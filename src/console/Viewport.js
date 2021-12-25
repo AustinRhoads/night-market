@@ -5,7 +5,7 @@ import React from 'react'
 export default function Viewport() {
     return (
         <div id="viewport">
-            <canvas id="game-canvas"></canvas>
+           <canvas id="game-canvas"></canvas>
             
             
             

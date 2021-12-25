@@ -31,7 +31,7 @@ game.start()
         <Console game={game} />
 
       </div>
-
+      
     </div>
   );
 }

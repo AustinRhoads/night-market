@@ -63,3 +63,8 @@ body{
   text-align: center;
   
 }
+
+#game-canvas{
+  width: 320px;
+  height: 180px;
+}
