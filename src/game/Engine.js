@@ -73,6 +73,16 @@ class Engine {
         //}    
     }
 
+    set_player_x_and_y_position = () => {
+        this.game.player.x += this.game.player.x_velocity
+        this.game.player.y += this.game.player.y_velocity
+    }
+
+    apply_friction_to_movement = () => {
+        this.game.player.x_velocity *= this.game.friction;
+        this.game.player.y_velocity *= this.game.friction;
+    }
+
     draw_background = () => {
         this.context.drawImage(this.img, 0, 0, 320, 180)
     }
@@ -107,11 +117,10 @@ class Engine {
 
         //PLAYER REACTS TO ENVIRONMENT
         this.gravity()
-        this.game.player.x += this.game.player.x_velocity
-        this.game.player.y += this.game.player.y_velocity
-        this.game.player.x_velocity *= this.game.friction;
-        this.game.player.y_velocity *= this.game.friction;
 
+        this.set_player_x_and_y_position()
+
+        this.apply_friction_to_movement()
 
         this.game.collide_with_floor()
 

@@ -16,6 +16,17 @@ class Player {
         this.y_velocity = 0;
     }
     
+    jump(){
+        if(this.jumping === false)
+        this.y_velocity -= this.jumping_height
+        this.jumping = true;
+    }
+
+    set_on_top_of = (num) => {
+        this.y = num - this.height;
+        this.jumping = false;
+        this.y_velocity = 0;
+    }
 
 };
 

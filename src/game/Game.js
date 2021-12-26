@@ -21,27 +21,22 @@ class Game {
         this.engine = new Engine(this);
         this.gravity = 1.2;
         this.friction = 0.8;
+        this.floor = 144;
        
     }
 
-    player_jump(){
-        if(this.player.jumping === false)
-        this.player.y_velocity -= this.player.jumping_height
-        this.player.jumping = true;
-    }
+
 
     collide_with_floor = () => {
-        if(this.player.y >= 144 - this.player.height){
-            this.player.y = 144 - this.player.height
-            this.player.jumping = false;
-            this.player.y_velocity = 0;
+        if(this.player_is_below_floor()){
+            this.player.set_on_top_of(this.floor)
         }
     }
 
     map_controller_button_actions_to_player_actions = (action_detail) => {
         switch(this.controller.gamepad_matrix[action_detail.button_index]){
             case "A":
-                this.player_jump()
+                this.player.jump()
                 break;
             case "Start":
                 window.location.reload(false)
@@ -56,9 +51,14 @@ class Game {
         if(e.detail.axes_index === 0){
             this.player.x_velocity += this.player.speed * e.detail.value
         }
-        if(e.detail.axes_index === 1){
-            this.player.y += this.player.speed * e.detail.value
-        }
+        //Longitudinal movement
+       // if(e.detail.axes_index === 1){
+       //     this.player.y_velocity += this.player.speed * e.detail.value
+       // }
+    }
+
+    player_is_below_floor = () => {
+        return this.player.y >= 144 - this.player.height
     }
 
 
