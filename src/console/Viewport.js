@@ -5,9 +5,11 @@ import React from 'react'
 export default function Viewport() {
     return (
         <div id="viewport">
-           <canvas id="game-canvas"></canvas>
-            
-            
+           <canvas id="game-canvas">
+          
+           </canvas>
+           <div id="player-2" className="facing-right"></div>
+          
             
             
             

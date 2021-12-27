@@ -17,7 +17,6 @@ import XBOX_360_MAP from "../constants/xbox_map";
 
         //TODO:
 
-        //2. Create constructer with left right jump etc. attributes with boolean values (engine returns these to update the player's position).
        
 
        

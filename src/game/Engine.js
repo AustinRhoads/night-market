@@ -101,6 +101,8 @@ class Engine {
         this.context.beginPath();
         this.context.rect(this.game.player.x, this.game.player.y, this.game.player.width, this.game.player.height);
         this.context.fill();
+
+
     }
 
 
@@ -120,6 +122,12 @@ class Engine {
 
         this.set_player_x_and_y_position()
 
+
+        ///PLAYER 2
+         //absolute div
+
+
+
         this.apply_friction_to_movement()
 
         this.game.collide_with_floor()
@@ -131,6 +139,11 @@ class Engine {
 
         //DRAW FLOOR
         this.draw_floor()
+
+        let p2 = document.getElementById('player-2');
+        //console.log(p2.x_velocity)
+       p2.style.left = this.game.player.x + "px"
+       p2.style.top = this.game.player.y + "px"
 
         //DRAW PLAYER
         this.draw_player()

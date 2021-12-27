@@ -15,7 +15,7 @@ const XBOX_360_MAP = {
     12: "D-pad Up",
     13: "D-pad Down",
     14: "D-pad Left",
-    15: "D-pad-Right",
+    15: "D-pad Right",
     16: "IDK Maybe... Mode"
 }
 
