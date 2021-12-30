@@ -72,8 +72,8 @@ body{
 
 #player-2{
   position: absolute;
-  height: 32px;
-  width: 32px;
+  height: 64px;
+  width: 64px;
  /* background-color: seagreen;*/
   z-index: 33;
 }

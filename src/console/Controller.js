@@ -11,6 +11,7 @@ import XBOX_360_MAP from "../constants/xbox_map";
         this.game = game;
         this.gamepad_is_connected = false;
         this.keyboard_is_controller = true;
+        
     }
 
      connect = () => {

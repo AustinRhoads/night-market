@@ -68,9 +68,25 @@ class Engine {
 
 
     gravity = () => {
-       // if(this.game.player.jumping){
-            this.game.player.y_velocity += this.game.gravity
-        //}    
+       
+           ///THIS WORKED BEFORE
+             this.game.player.y_velocity += this.game.gravity
+           // if(this.game.player.jumping === true){
+
+
+
+
+            //let z = ((this.game.player.jumping_distance / 2) - this.game.player.current_jumping_distance) * ((this.game.player.jumping_distance / 2) - this.current_jumping_distance)
+//   
+            //let downward_velocity = (-2 * (this.game.player.jumping_height) * (this.game.player.speed)) / z;
+            //this.game.player.y_velocity += downward_velocity;
+            //this.game.player.current_jumping_height += downward_velocity;
+            //this.game.player.current_jumping_distance += Math.abs(this.game.player.x_velocity);
+         
+            //console.log(this.current_jumping_height)
+        //}
+
+       // this.game.player.is_declining();
     }
 
     set_player_x_and_y_position = () => {
@@ -109,12 +125,13 @@ class Engine {
 
     run = () => {
        // console.log(this.context)
+       this.game.a_is_pressed = false;
 
         //CORRECT CONTROLLER MODES
 
         this.game.controller.dispatch_controller_events()
 
-
+        
         
 
         //PLAYER REACTS TO ENVIRONMENT
@@ -139,6 +156,9 @@ class Engine {
 
         //DRAW FLOOR
         this.draw_floor()
+
+        this.game.player.is_inclining(this.game.a_is_pressed)
+        this.game.player.is_declining()
 
         let p2 = document.getElementById('player-2');
         //console.log(p2.x_velocity)

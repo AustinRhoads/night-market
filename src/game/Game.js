@@ -15,13 +15,14 @@ class Game {
 
     constructor(){
         this.name = "Night Market"
-        this.player = new Player("Auzzy");
+        this.player = new Player("Auzzy", this);
         this.controller = new Controller(this);
         this.controller.connect();
         this.engine = new Engine(this);
-        this.gravity = 1.4;
+        this.gravity = 2.2;
         this.friction = 0.8;
-        this.floor = 144;
+        this.floor = 300;
+        this.a_is_pressed = false;
        
     }
 
@@ -37,12 +38,13 @@ class Game {
         switch(this.controller.gamepad_matrix[action_detail.button_index]){
             case "A":
                 this.player.jump()
+                this.a_is_pressed = true;
                 break;
                 case "D-pad Left":
-                    this.move_left_or_right(-1)
+                    this.player.move_left_or_right(-1)
                 break;
                 case "D-pad Right":
-                    this.move_left_or_right(1)
+                    this.player.move_left_or_right(1)
                 break;
             case "Start":
                 window.location.reload(false)
@@ -51,6 +53,8 @@ class Game {
                 return;
         } 
     }
+
+
 
 
     map_axes_actions_to_player_actions = (e) => {
@@ -66,7 +70,7 @@ class Game {
 
 
     player_is_below_floor = () => {
-        return this.player.y >= 144 - this.player.height
+        return this.player.y >= this.floor - this.player.height
     }
 
 
